@@ -166,7 +166,7 @@ https://explainxkcd.com/wiki/index.php/1988:_Containers
 
 
 ---
-# Fifth level: Automate stuff
+# Fifth level: Automate what should be automated
 
 - Automate a development environment using docker compose and devcontainers
 - Automate releases of your package using Github Actions
