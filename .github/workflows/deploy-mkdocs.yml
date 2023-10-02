@@ -51,8 +51,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
           cache-dependency-path: |
-            pyproject.toml
-            requirements.txt
+            services/mkdocs/requirements.txt
 
       - name: Set up build cache
         uses: actions/cache/restore@v3
