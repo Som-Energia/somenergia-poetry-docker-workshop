@@ -83,7 +83,7 @@ jobs:
         run: |
           mkdir -p site/slides
           mkdir -p slides/html
-          npx @marp-team/marp-cli@latest slides/dependency-and-packaging-slides.md -o slides/html/dependency-and-packaging-slides.html
+          npx @marp-team/marp-cli@latest slides/dependency-and-packaging-slides.md -o slides/html/index.html
           cp -R slides/html/* site/slides/
 
       - name: Adjust permissions
