@@ -74,6 +74,18 @@ jobs:
           mkdocs build --clean --strict --verbose
           mkdocs --version
 
+      - name: Setup node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Build MARP slides
+        run: |
+          mkdir -p site/slides
+          mkdir -p slides/html
+          npx @marp-team/marp-cli@latest slides/dependency-and-packaging-slides.md -o slides/html/dependency-and-packaging-slides.html
+          cp -R slides/html/* site/slides/
+
       - name: Adjust permissions
         run: |
           chmod -c -R +rX site/ | while read line; do
