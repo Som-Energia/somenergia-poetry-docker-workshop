@@ -28,7 +28,7 @@ You may also want to add dependencies from private repositories. These repos nor
 
 1. Add a `source` to `pyproject.toml` file
 
-   1. `poetry source add myprivaterepo [https://pypi.](https://pypi.datuma.aiguasol.coop/simple)myprivaterepo.org`
+   1. `poetry source add myprivaterepo https://pypi.myprivaterepo.org`
    2. This should modify your `pyproject.toml` file and will add something like this
 
       ```toml
