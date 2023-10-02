@@ -1,5 +1,5 @@
-site_name: Mercat Elèctric + Dades
-repo_url: https://gitlab.somenergia.coop/et/somenergia-mercat-tractament-fitxers
+site_name: Poetry and Docker workshop
+repo_url: https://github.com/Som-Energia/somenergia-poetry-docker-workshop
 edit_uri: edit/main/docs/
 theme:
   name: material
@@ -14,7 +14,7 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: teal
+      primary: light green
       accent: amber
       toggle:
         icon: material/lightbulb

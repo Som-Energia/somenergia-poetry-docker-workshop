@@ -14,8 +14,7 @@ help: ## Print this help
 # ---------------------------------------------------------------------------- #
 
 mkdocs.serve: ## serve the mkdocs documentation
-	@docker compose -f docker-compose.mkdocs.yml up -d
-	@docker compose -f docker-compose.mkdocs.yml logs -ft
+	@docker compose -f docker-compose.mkdocs.yml up
 
 mkdocs.build-image: ## build the mkdocs image
 	@docker compose -f docker-compose.mkdocs.yml build mkdocs
@@ -28,7 +27,3 @@ mkdocs.build-docs: ## build the mkdocs documentation
 
 mkdocs.logs: ## show the logs of the mkdocs container
 	@docker compose -f docker-compose.mkdocs.yml logs -ft mkdocs
-
-mkdocs.stop: ## stop the mkdocs container
-	@echo "stopping mkdocs container"
-	@docker compose -f docker-compose.mkdocs.yml down
