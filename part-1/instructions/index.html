@@ -1,0 +1,827 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Workshop to learn how to use Poetry and Docker to develop Python applications.
+">
+      
+      
+        <meta name="author" content="Som Energia">
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../part-2/instructions/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>A demonstration using Docker - Poetry and Docker workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="amber">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-demonstration-using-docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Poetry and Docker workshop" class="md-header__button md-logo" aria-label="Poetry and Docker workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Poetry and Docker workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A demonstration using Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Som-Energia/somenergia-poetry-docker-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Poetry and Docker workshop" class="md-nav__button md-logo" aria-label="Poetry and Docker workshop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Poetry and Docker workshop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Som-Energia/somenergia-poetry-docker-workshop" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About this workshop
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="true">
+          Part 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part 1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Part 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          A demonstration using Docker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        A demonstration using Docker
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-pyenv" class="md-nav__link">
+    Installing pyenv
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-python-with-pyenv" class="md-nav__link">
+    Installing python with pyenv
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-pipx" class="md-nav__link">
+    Installing pipx
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-poetry" class="md-nav__link">
+    Installing poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-poetry" class="md-nav__link">
+    Configure poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-project-with-poetry" class="md-nav__link">
+    Creating a new project with poetry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manage-dependencies-in-your-project" class="md-nav__link">
+    Manage dependencies in your project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-your-project-as-a-cli-with-poetry" class="md-nav__link">
+    Writing your project as a CLI with poetry
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="false">
+          Part 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part 2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part-2/instructions/" class="md-nav__link">
+        Building and publishing your project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-pyenv" class="md-nav__link">
+    Installing pyenv
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-python-with-pyenv" class="md-nav__link">
+    Installing python with pyenv
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-pipx" class="md-nav__link">
+    Installing pipx
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-poetry" class="md-nav__link">
+    Installing poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-poetry" class="md-nav__link">
+    Configure poetry
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-new-project-with-poetry" class="md-nav__link">
+    Creating a new project with poetry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manage-dependencies-in-your-project" class="md-nav__link">
+    Manage dependencies in your project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-your-project-as-a-cli-with-poetry" class="md-nav__link">
+    Writing your project as a CLI with poetry
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/Som-Energia/somenergia-poetry-docker-workshop/edit/main/docs/part-1/instructions.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/Som-Energia/somenergia-poetry-docker-workshop/raw/main/docs/part-1/instructions.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+    </a>
+  
+
+
+
+<h1 id="a-demonstration-using-docker">A demonstration using Docker</h1>
+<blockquote>
+<p>Spoiler: you will need docker. You can get free containers using <a href="https://labs.play-with-docker.com/">play-with-docker</a>. You can tell if you have docker installed by running <code>docker run --rm hello-world</code>. You may need root access.</p>
+</blockquote>
+<p>Start by launching a new container named <code>poetry-ws-part-1</code> with the latest version of ubuntu and run a bash shell. The <code>--rm</code> flag will remove the container after you exit it so it won't clutter your system.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--name<span class="w"> </span>poetry-ws-part-1<span class="w"> </span>ubuntu:latest<span class="w"> </span>bash<span class="sb">`</span>
+</code></pre></div>
+<p>You can remove the container afterwards after you've exited it with</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>rm<span class="w"> </span>poetry-ws-part-1
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Editing files inside a container</p>
+<p>At this point you are now starting from a clean slate. Next steps require that you create and edit files using a terminal. A different, more comfortable approach is to attach a visualstudiocode instance to the container and treat it as a normal project. You will need the <code>Remote Explorer</code> extension.</p>
+</div>
+<h2 id="installing-pyenv">Installing <code>pyenv</code></h2>
+<p>Install pyenv dependencies and other utilities.</p>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>git<span class="w"> </span>vim<span class="w"> </span>build-essential<span class="w"> </span>libssl-dev<span class="w"> </span>zlib1g-dev<span class="w"> </span><span class="se">\</span>
+libbz2-dev<span class="w"> </span>libreadline-dev<span class="w"> </span>libsqlite3-dev<span class="w"> </span>curl<span class="w"> </span><span class="se">\</span>
+libncursesw5-dev<span class="w"> </span>xz-utils<span class="w"> </span>tk-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libxmlsec1-dev<span class="w"> </span>libffi-dev<span class="w"> </span>liblzma-dev<span class="w"> </span>-y
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://pyenv.run<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p>You will now have <code>pyenv</code> installed. Let's configure it. As per the instructions, we need to add the following to our <code>~/.bashrc</code> file:</p>
+<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>~/.bashrc
+</code></pre></div>
+<p>Go to the end of the file and add the following:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load pyenv automatically by appending</span>
+<span class="c1"># the following to</span>
+<span class="c1">#~/.bash_profile if it exists, otherwise ~/.profile (for login shells)</span>
+<span class="c1"># and ~/.bashrc (for interactive shells) :</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYENV_ROOT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.pyenv&quot;</span>
+<span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>pyenv<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PYENV_ROOT</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>pyenv<span class="w"> </span>init<span class="w"> </span>-<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Save and quit (<code>:wq</code> in vim). Now we need to refresh our shell to load the new configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SHELL</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h2 id="installing-python-with-pyenv">Installing python with <code>pyenv</code></h2>
+<p>You can now use <code>pyenv</code> to install a new version of python. Let's install version <code>3.10.9</code>:</p>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.10.9
+</code></pre></div>
+<p>Let's make it available globally:</p>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>global<span class="w"> </span><span class="m">3</span>.10.9
+</code></pre></div>
+<p>We can also install different versions of python and switch between them:</p>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.8.12
+</code></pre></div>
+<h2 id="installing-pipx">Installing <code>pipx</code></h2>
+<p>We have now python 3.10.9 installed globally. Let's install <code>pipx</code> with it:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>pipx
+python3<span class="w"> </span>-m<span class="w"> </span>pipx<span class="w"> </span>ensurepath
+</code></pre></div>
+<p>Again, we need to refresh our shell to load the new configurations:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">exec</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SHELL</span><span class="s2">&quot;</span>
+</code></pre></div>
+<h2 id="installing-poetry">Installing <code>poetry</code></h2>
+<p>Let's install <code>poetry</code> with <code>pipx</code>:</p>
+<div class="highlight"><pre><span></span><code>pipx<span class="w"> </span>install<span class="w"> </span><span class="nv">poetry</span><span class="o">==</span><span class="m">1</span>.4.2<span class="w"> </span>--force
+</code></pre></div>
+<p>And confirm it's installed with:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>poetry<span class="w"> </span>--version
+Poetry<span class="w"> </span><span class="o">(</span>version<span class="w"> </span><span class="m">1</span>.4.2<span class="o">)</span>
+$<span class="w"> </span>whereis<span class="w"> </span>poetry
+poetry:<span class="w"> </span>/root/.local/bin/poetry
+</code></pre></div>
+<h3 id="configure-poetry">Configure <code>poetry</code></h3>
+<p>We want to configure poetry to not create virtual environments by default:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># configure poetry</span>
+poetry<span class="w"> </span>config<span class="w"> </span>virtualenvs.create<span class="w"> </span><span class="nb">false</span><span class="sb">`</span>
+poetry<span class="w"> </span>config<span class="w"> </span>virtualenvs.in-project<span class="w"> </span><span class="nb">false</span><span class="sb">`</span>
+</code></pre></div>
+<h2 id="creating-a-new-project-with-poetry">Creating a new project with <code>poetry</code></h2>
+<p>We can create a new project with poetry named <code>part-1</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># create project</span>
+mkdir<span class="w"> </span>~/part-1
+<span class="nb">cd</span><span class="w"> </span>~/part-1
+</code></pre></div>
+<p>We will now create a virtual environment for this project only</p>
+<div class="highlight"><pre><span></span><code>pyenv<span class="w"> </span>virtualenv<span class="w"> </span><span class="m">3</span>.10.9<span class="w"> </span>poetry-ws-part-1
+pyenv<span class="w"> </span>activate<span class="w"> </span>poetry-ws-part-1
+pyenv<span class="w"> </span>rehash<span class="w"> </span><span class="c1"># refresh pyenv shims</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Sourcing environment automatically</p>
+<p>At the project level, type <code>pyenv local poetry-ws-part-1</code> to tell <code>pyenv</code> to source this environment every time you cd into the directory. <code>pyenv</code> will do so by creating a file <code>.python-version</code> at the directory. It does not need to be the name of a virtual environment, a version number e.g. 3.10.9 could also be used.</p>
+</div>
+<p>use poetry to create new project with</p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>init
+</code></pre></div>
+<p>The dialog will ask you a few questions. You can skip them by pressing enter or by passing <code>--no-interaction</code> to the previous command. Skip the part poetry asks you about defining dependencies using the prompt. The dialog will then create a <code>pyproject.toml</code> file. </p>
+<p>Have a look at it! It should look something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[tool.poetry]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;part-1&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;You &lt;you@mail.something&gt;&quot;</span><span class="p">]</span>
+<span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;README.md&quot;</span>
+
+<span class="k">[tool.poetry.dependencies]</span>
+<span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.10&quot;</span>
+
+
+<span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;poetry-core&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry.core.masonry.api&quot;</span>
+</code></pre></div>
+<h2 id="manage-dependencies-in-your-project">Manage dependencies in your project</h2>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>add<span class="w"> </span>pandas
+</code></pre></div>
+<p>and remove dependencies</p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>remove<span class="w"> </span>pandas
+</code></pre></div>
+<p>Every time you <code>add</code> or <code>remove</code> packages with poetry, two things happen:</p>
+<ul>
+<li>the <code>pyproject.toml</code> file is updated and a new line is added under the dependencies section</li>
+<li>a <code>poetry.lock</code> file is created or updated, containing the exact versions of the dependencies you are using and their relations.</li>
+</ul>
+<p>Let's install <code>cowsay</code> with <code>poetry</code>:</p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>add<span class="w"> </span>cowsay
+poetry<span class="w"> </span>add<span class="w"> </span>--group<span class="w"> </span>dev<span class="w"> </span>black
+pyenv<span class="w"> </span>rehash<span class="w"> </span><span class="c1"># to update shims</span>
+cowsay<span class="w"> </span>hola<span class="w"> </span><span class="c1"># a cow should greet you, in spanish</span>
+<span class="w">  </span>____
+<span class="p">|</span><span class="w"> </span>hola<span class="w"> </span><span class="p">|</span>
+<span class="w">  </span><span class="o">====</span>
+<span class="w">    </span><span class="se">\</span>
+<span class="w">     </span><span class="se">\</span>
+<span class="w">       </span>^__^
+<span class="w">       </span><span class="o">(</span>oo<span class="o">)</span><span class="se">\_</span>______
+<span class="w">       </span><span class="o">(</span>__<span class="o">)</span><span class="se">\ </span><span class="w">      </span><span class="o">)</span><span class="se">\/\</span>
+<span class="w">           </span><span class="o">||</span>----w<span class="w"> </span><span class="p">|</span>
+<span class="w">           </span><span class="o">||</span><span class="w">     </span><span class="o">||</span>
+</code></pre></div>
+<p>Go check your <code>pyproject.toml</code> file again with the changes.</p>
+<h2 id="writing-your-project-as-a-cli-with-poetry">Writing your project as a CLI with <code>poetry</code></h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/part-1
+mkdir<span class="w"> </span>part-1
+touch<span class="w"> </span>part-1/__init__.py
+touch<span class="w"> </span>part-1/cli.py
+</code></pre></div>
+<p>Open <code>part-1/cli.py</code> and add the following:</p>
+<div class="highlight"><pre><span></span><code>import<span class="w"> </span>cowsay
+
+def<span class="w"> </span>cli<span class="o">()</span>:
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>cowsay.cow<span class="o">(</span><span class="s1">&#39;Hello World&#39;</span><span class="o">)</span>
+
+<span class="k">if</span><span class="w"> </span><span class="nv">__name__</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;__main__&quot;</span>:
+<span class="w">    </span>cli<span class="o">()</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">What is a CLI?</p>
+<p><em>CLI</em> stands for <em>command line interface</em>. It is a type of software that acts as an interface to another software, and is designed to be executed from a terminal and interact with the user through text. A common example is the <code>git</code> CLI.</p>
+</div>
+<p>Confirm that your program works by running it with <code>python part-1/cli.py</code>:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>python<span class="w"> </span>part-1/cli.py
+___________
+<span class="p">|</span><span class="w"> </span>Hello<span class="w"> </span>World<span class="w"> </span><span class="p">|</span>
+<span class="w">  </span><span class="o">===========</span>
+<span class="w">           </span><span class="se">\</span>
+<span class="w">            </span><span class="se">\</span>
+<span class="w">              </span>^__^
+<span class="w">              </span><span class="o">(</span>oo<span class="o">)</span><span class="se">\_</span>______
+<span class="w">              </span><span class="o">(</span>__<span class="o">)</span><span class="se">\ </span><span class="w">      </span><span class="o">)</span><span class="se">\/\</span>
+<span class="w">                  </span><span class="o">||</span>----w<span class="w"> </span><span class="p">|</span>
+<span class="w">                  </span><span class="o">||</span><span class="w">     </span><span class="o">||</span>
+</code></pre></div>
+<p>We can now update our <code>pyproject.toml</code> file to include a CLI entrypoint:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[tool.poetry]</span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;part-1&quot;</span>
+<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0.1.0&quot;</span>
+<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;some description&quot;</span>
+<span class="n">authors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Your Name &lt;youremail@yopmail.com&gt;&quot;</span><span class="p">]</span>
+<span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;README.md&quot;</span>
+<span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[{</span><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;part-1&quot;</span><span class="p">}]</span><span class="w"> </span><span class="c1"># new</span>
+
+<span class="k">[tool.poetry.dependencies]</span>
+<span class="n">python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^3.10&quot;</span>
+<span class="n">pandas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^2.0.0&quot;</span>
+<span class="n">cowsay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^5.0&quot;</span>
+
+<span class="k">[tool.poetry.scripts]</span>
+<span class="n">part-1-cli</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;part-1.cli:cli&quot;</span><span class="w"> </span><span class="c1"># new</span>
+
+<span class="k">[tool.poetry.group.dev.dependencies]</span>
+<span class="n">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^23.3.0&quot;</span>
+
+<span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;poetry-core&quot;</span><span class="p">]</span>
+<span class="n">build-backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;poetry.core.masonry.api&quot;</span>
+</code></pre></div>
+<p>And now we can install our package with <code>poetry</code> and run our little CLI by calling <code>part-1-cli</code>:</p>
+<div class="highlight"><pre><span></span><code>poetry<span class="w"> </span>install<span class="w">  </span><span class="c1"># install package along with its CLI</span>
+pyenv<span class="w"> </span>rehash<span class="w"> </span><span class="c1"># refresh python shims</span>
+</code></pre></div>
+<p>Try it out!</p>
+<div class="highlight"><pre><span></span><code>part-1-cli<span class="w"> </span><span class="c1"># launch cli</span>
+</code></pre></div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2023</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../js/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
