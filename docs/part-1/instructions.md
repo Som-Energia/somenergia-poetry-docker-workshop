@@ -5,7 +5,7 @@
 Start by launching a new container named `poetry-ws-part-1` with the latest version of ubuntu and run a bash shell. The `--rm` flag will remove the container after you exit it so it won't clutter your system.
 
 ```bash
-docker run -it --name poetry-ws-part-1 ubuntu:latest bash`
+docker run -it --name poetry-ws-part-1 ubuntu:latest bash
 ```
 
 You can remove the container afterwards after you've exited it with
