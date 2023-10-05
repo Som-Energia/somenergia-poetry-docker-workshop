@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  greeter:
+    image: poetry-ws-part-3-python-poetry:latest
+    build: services/part-3
