@@ -1,6 +1,12 @@
 version: "3"
 
 services:
-  greeter:
+  baby-steps:
+    image: poetry-ws-part-3-baby-steps:latest
+    build: services/part-3/baby-steps
+  basic-python:
+    image: poetry-ws-part-3-basic-python:latest
+    build: services/part-3/basic-python
+  python-poetry:
     image: poetry-ws-part-3-python-poetry:latest
-    build: services/part-3
+    build: services/part-3/python-poetry

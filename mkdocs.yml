@@ -35,6 +35,7 @@ theme:
         name: Switch to dark mode
 
 markdown_extensions:
+  - md_in_html
   - admonition
   - pymdownx.details
   - attr_list

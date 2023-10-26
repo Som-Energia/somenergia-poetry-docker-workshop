@@ -1,12 +1,7 @@
 version: "3"
 
 services:
-  baby-steps:
-    image: poetry-ws-part-2-baby-steps:latest
-    build: services/part-2/baby-steps
-  basic-python:
-    image: poetry-ws-part-2-basic-python:latest
-    build: services/part-2/basic-python
-  python-poetry:
+  greeter:
     image: poetry-ws-part-2-python-poetry:latest
-    build: services/part-2/python-poetry
+    build: services/part-2
+

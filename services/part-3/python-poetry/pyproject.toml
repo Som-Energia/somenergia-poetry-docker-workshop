@@ -1,0 +1,25 @@
+[tool.poetry]
+authors = ["Diego Quintana <diego.quintana@somenergia.coop>"]
+description = "A simple CLI to greet people"
+name = "greeter-test-elated_swanson"
+packages = [
+  {include = "greeter", from = "src"},
+]
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.scripts]
+greeter-cli = "greeter.cli:cli"
+
+[tool.poetry.dependencies]
+cowsay = "^6.1"
+python = "^3.10"
+
+[[tool.poetry.source]]
+name = "myprivaterepo"
+priority = "supplemental"
+url = "https://pypi.docker.localhost"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
