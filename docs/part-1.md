@@ -1,6 +1,8 @@
 # Part 1: A demonstration using Docker
 
-> Spoiler: you will need docker. You can get free containers using [play-with-docker](https://labs.play-with-docker.com/). You can tell if you have docker installed by running `docker run --rm hello-world`. You may need root access.
+!!! tip "In case you do not have Docker installed already" 
+
+    You can get free containers using [play-with-docker](https://labs.play-with-docker.com/). You can tell if you have docker installed by running `docker run --rm hello-world`. You may need root access.
 
 Start by launching a new container named `poetry-ws-part-1` with the latest version of ubuntu and run a bash shell. The `--rm` flag will remove the container after you exit it so it won't clutter your system.
 
