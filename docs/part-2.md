@@ -107,7 +107,7 @@ Building greeter-test-ilhUggIkhxjxB (0.1.0)
 
 [Set up `pypi` credentials with `poetry`](https://python-poetry.org/docs/repositories/#configuring-credentials) by [setting a pypi token](https://pypi.org/manage/account/token/)
 
-![pypi token](![Alt text](assets/images/part-2-pypi-token-add.png))
+![pypi token](assets/images/part-2-pypi-token-add.png)
 
 
 ```bash

@@ -15,6 +15,11 @@ greeter-cli = "greeter.cli:cli"
 cowsay = "^6.1"
 python = "^3.10"
 
+[[tool.poetry.source]]
+name = "myprivaterepo"
+priority = "supplemental"
+url = "https://pypi.docker.localhost"
+
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
