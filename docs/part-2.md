@@ -122,7 +122,7 @@ poetry publish
 
 !!! warning "Version already exists"
 
- If you get an error like `HTTPError: 400 Client Error: File already exists. See https://pypi.org/help/#file-name-reuse for url: https://upload.pypi.org/legacy/`, you need to bump the version of your package. You can do this by changing the `version` field in `pyproject.toml` and running `poetry build` again.
+    If you get an error like `HTTPError: 400 Client Error: File already exists. See https://pypi.org/help/#file-name-reuse for url: https://upload.pypi.org/legacy/`, you need to bump the version of your package. You can do this by changing the `version` field in `pyproject.toml` and running `poetry build` again.
 
 ## Publish to a private repository
 
