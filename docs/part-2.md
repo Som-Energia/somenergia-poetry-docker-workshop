@@ -9,7 +9,7 @@ We will cover both options. But before that, you need to adapt your project so t
 
 !!! info "Set up a private pypi repository"
 
-   You can set up a local pypi server using docker compose. This is recommended for testing purposes.
+    You can set up a local pypi server using docker compose. This is recommended for testing purposes.
 
 ## Creating the project `greeter`
 
