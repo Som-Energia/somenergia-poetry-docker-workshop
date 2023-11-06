@@ -165,7 +165,7 @@ Since our local pypi server is using a self-signed certificate, we need to disab
 
 ```bash
 poetry config certificates.myprivaterepo.cert false
-``````
+```
 
 And finally, publish your package with
 
